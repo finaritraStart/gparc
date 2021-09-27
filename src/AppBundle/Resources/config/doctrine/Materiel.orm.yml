@@ -1,0 +1,25 @@
+AppBundle\Entity\Materiel:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\MaterielRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nomMaterielUtiliser:
+            type: string
+            length: 255
+        designation:
+            type: string
+            length: 255
+        quantite:
+            type: string
+            length: 255
+        prixMateriel:
+            type: string
+            length: 255
+            column: PrixMateriel
+    lifecycleCallbacks: {  }

@@ -1,0 +1,199 @@
+<?php
+
+namespace AppBundle\Entity;
+
+/**
+ * image
+ */
+class image
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var int
+     */
+    private $numImage;
+
+    /**
+     * @var guid
+     */
+    private $formImage;
+
+    /**
+     * @var float
+     */
+    private $modelImage;
+
+    /**
+     * @var binary
+     */
+    private $typeImage;
+
+    /**
+     * @var bool
+     */
+    private $megaImage;
+
+    /**
+     * @var string
+     */
+    private $totalImage;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set numImage
+     *
+     * @param integer $numImage
+     *
+     * @return image
+     */
+    public function setNumImage($numImage)
+    {
+        $this->numImage = $numImage;
+
+        return $this;
+    }
+
+    /**
+     * Get numImage
+     *
+     * @return int
+     */
+    public function getNumImage()
+    {
+        return $this->numImage;
+    }
+
+    /**
+     * Set formImage
+     *
+     * @param guid $formImage
+     *
+     * @return image
+     */
+    public function setFormImage($formImage)
+    {
+        $this->formImage = $formImage;
+
+        return $this;
+    }
+
+    /**
+     * Get formImage
+     *
+     * @return guid
+     */
+    public function getFormImage()
+    {
+        return $this->formImage;
+    }
+
+    /**
+     * Set modelImage
+     *
+     * @param float $modelImage
+     *
+     * @return image
+     */
+    public function setModelImage($modelImage)
+    {
+        $this->modelImage = $modelImage;
+
+        return $this;
+    }
+
+    /**
+     * Get modelImage
+     *
+     * @return float
+     */
+    public function getModelImage()
+    {
+        return $this->modelImage;
+    }
+
+    /**
+     * Set typeImage
+     *
+     * @param binary $typeImage
+     *
+     * @return image
+     */
+    public function setTypeImage($typeImage)
+    {
+        $this->typeImage = $typeImage;
+
+        return $this;
+    }
+
+    /**
+     * Get typeImage
+     *
+     * @return binary
+     */
+    public function getTypeImage()
+    {
+        return $this->typeImage;
+    }
+
+    /**
+     * Set megaImage
+     *
+     * @param boolean $megaImage
+     *
+     * @return image
+     */
+    public function setMegaImage($megaImage)
+    {
+        $this->megaImage = $megaImage;
+
+        return $this;
+    }
+
+    /**
+     * Get megaImage
+     *
+     * @return bool
+     */
+    public function getMegaImage()
+    {
+        return $this->megaImage;
+    }
+
+    /**
+     * Set totalImage
+     *
+     * @param string $totalImage
+     *
+     * @return image
+     */
+    public function setTotalImage($totalImage)
+    {
+        $this->totalImage = $totalImage;
+
+        return $this;
+    }
+
+    /**
+     * Get totalImage
+     *
+     * @return string
+     */
+    public function getTotalImage()
+    {
+        return $this->totalImage;
+    }
+}

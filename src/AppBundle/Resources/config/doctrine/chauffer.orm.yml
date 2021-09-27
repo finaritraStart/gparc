@@ -1,0 +1,48 @@
+AppBundle\Entity\chauffer:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\chaufferRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        cINChauffer:
+            type: string
+            length: '12'
+            unique: true
+            column: CIN_chauffer
+        nomChauffer:
+            type: string
+            length: 255
+            column: Nom_chauffer
+        prenomChauffer:
+            type: string
+            length: 255
+            column: Prenom_chauffer
+        numPermisConduire:
+            type: string
+            length: '20'
+            column: Num_permis_conduire
+        dteDeNaissance:
+            type: date
+            column: Dte_de_naissance
+        fonction:
+            type: string
+            length: 255
+            column: Fonction
+        adresse:
+            type: string
+            length: '50'
+            column: Adresse
+        mobile:
+            type: string
+            length: '14'
+            column: Mobile
+        adresseMail:
+            type: string
+            length: 255
+            column: Adresse_mail
+    lifecycleCallbacks: {  }

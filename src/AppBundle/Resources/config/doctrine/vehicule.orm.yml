@@ -1,0 +1,68 @@
+AppBundle\Entity\vehicule:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\vehiculeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        vehicule:
+            type: blob
+            length: 255
+            column: vehicule
+        immatricule:
+            type: string
+            length: '8'
+            unique: true
+            column: Immatricule
+        marque:
+            type: string
+            length: 255
+            column: Marque
+        modele:
+            type: string
+            length: 255
+            column: Modele
+        genre:
+            type: string
+            length: 255
+            column: Genre
+        puissance:
+            type: string
+            length: '10'
+            column: Puissance
+        designation:
+            type: string
+            length: 255
+            column: Designation
+        dateAcquisition:
+            type: date
+            column: Date_acquisition
+        etatDuVehicule:
+            type: string
+            length: 255
+            column: Etat_du_vehicule
+        consommationKm:
+            type: string
+            length: 255
+            column: Consommation_km
+        couleur:
+            type: string
+            length: '10'
+            column: Couleur
+        nombreDePorte:
+            type: string
+            length: '2'
+            column: Nombre_de_porte
+        nombreDePlace:
+            type: string
+            length: '2'
+            column: Nombre_de_place
+        poidsMaximalSupportable:
+            type: string
+            length: '8'
+            column: Poids_maximal_supportable
+    lifecycleCallbacks: {  }

@@ -1,0 +1,223 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: fr
+
+framework:
+    #esi: ~
+    translator: { fallbacks: ['%locale%'] }
+    secret: '%secret%'
+    router:
+        resource: '%kernel.project_dir%/app/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enable_annotations: true }
+    serializer: { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    session:
+        # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id: session.handler.native_file
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
+        charset: UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport:  smtp
+    host:       email-smtp.us-east-1.amazonaws.com
+    port:       587 # different ports are available, see SES console
+    encryption: tls # TLS encryption is required
+    username:   AWS_SES_SMTP_USERNAME  # to be created in the SES console
+    password:   AWS_SES_SMTP_PASSWORD  # to be created in the SES console
+
+twig:
+    form_themes:
+        - 'bootstrap_3_layout.html.twig'
+        
+fos_user:
+    ## Your configuration for FOS
+    resetting:
+        token_ttl: 86400 # change this value, it is in seconds = 24 hours
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    group:
+        group_class: AppBundleBundle\Entity\Group
+    
+    ## To solve the problem
+    from_email:
+        address: "fy@fy.com"
+        sender_name: Demo App
+    registration:
+        confirmation:
+            enabled: true
+    service:
+        mailer: fos_user.mailer.twig_swift
+    resetting:
+        email:
+            from_email: 
+                address:        noreply@yoursite.com
+                sender_name:    No Reply
+            template:   email/password_resetting.email.twig
+    registration:
+        form:
+            type: user_registration
+        confirmation:
+            template:   '@FOSUser/Registration/email.txt.twig'
+            enabled: true
+        
+        
+easy_admin:
+    
+    list:
+        
+        actions:
+            - { name: 'show', icon: 'search', label: '', title: 'Search' }
+            - { name: 'edit', icon: 'pencil', label: '', title: 'Edit' }
+    design:
+        templates:
+            # Twig namespace template syntax
+            paginator: '@App/Default/fragments/_paginator.html.twig'
+            # legacy template syntax works too:
+            paginator: 'AppBundle:Default:fragments/_paginator.html.twig'
+        form_theme: 'horizontal'
+        menu: 
+             - label: 'Administration'
+               icon: dashboard 
+             - { label: 'Accueil', url: 'http://example.com', rel: 'index',icon:'home' }
+             - { entity: 'vehicule', label: 'véhicule', icon: 'car' }
+             
+             - { entity: 'Maintenance', label: 'Maintenance', icon: 'wrench' }
+             - { entity: 'Assurance', label: 'Assurance', icon: 'book' }
+             - { entity: 'chauffer', label: 'Chauffeur', icon: 'user-o' }
+             - { entity: 'Mission', label: 'Mission', icon: 'road' }
+             - { entity: 'message', label: 'Message', icon: 'envelope' }
+             - { entity: 'User', label: 'Utilisateur', icon: 'user' }
+      
+             
+                
+    entities:
+        
+
+        vehicule:
+                class: AppBundle\Entity\vehicule
+                list:
+                    
+                    
+                
+                label: gerer véhicule
+                form:
+                title: "vehicule"
+        
+        User:
+                class: AppBundle\Entity\User
+                label: 'Utilisateur'
+        
+        
+        chauffer:
+                class: AppBundle\Entity\chauffer
+                label: 'chauffeur'
+                list:
+                fields:
+                    - { property: 'photo', type: 'image' }
+                form:
+                    fields:
+                            - { type: 'group', css_class: 'col-sm-6', label: 'Information' }
+                            - Mobile
+                            - Fonction
+                            - { type: 'group', label: 'Contacte', icon: 'phone',
+                                css_class: 'col-sm-6' }
+                            - Adresse
+                            - { type: 'group', css_class: 'col-sm-6', help: 'Only for administrators' }
+                            - id
+                       
+                       
+                new:
+                title:  'Add customer'
+                form_options: { validation_groups: ['Default', 'Customer'] }
+                edit:
+                title:  'Edit customer'
+                form_options: { validation_groups: ['Default'] }
+        Maintenance:
+                class: AppBundle\Entity\Maintenance
+               
+        Assurance:
+               class: AppBundle\Entity\Assurance
+               
+               
+        Mission:
+              class: AppBundle\Entity\Mission
+              form:
+                fields:
+                    - { type: 'tab' , label: 'Account Information', icon: 'user' }
+                    - TypeDeMission
+                    - Objectif
+                    - NombreDeJours
+                    - { type: 'tab', label: 'Contact Information', icon: 'envelope-o' }
+                    - { type: 'group', label: 'Address', css_class: 'col-sm-6' }
+                    - DateDepart
+                    - KilometrageDepart
+                    - DateDebut
+                    - Date_retour
+                    - { type: 'group', label: 'Media', css_class: 'col-sm-6' }
+                    - KilometrageRetour
+                    - DateFin
+        message:
+            class: AppBundle\Entity\message
+       
+        Customer:
+                class: AppBundle\Entity\vehicule
+                label: 'Véhicule'
+                list:
+                    title: '.%%entity_label%%'
+                show:
+                    title: '%%entity_label%% (#%%entity_id%%)'
+                form:
+                    form_title: 'vehicule'
+                edit:
+                    title: 'véhicule'
+
+
+
+    site_name: 'GparcVéhicule <em style="font-size: 80%;"></em>'
+
+

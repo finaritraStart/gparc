@@ -1,0 +1,32 @@
+AppBundle\Entity\Maintenance:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\MaintenanceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        immatricule:
+            type: string
+            length: 255
+            column: immatricule
+        typeEntretient:
+            type: string
+            length: '40'
+            column: TypeEntretient
+        dateEntretient:
+            type: date
+            column: DateEntretient
+        designation:
+            type: string
+            length: 255
+            column: Designation
+        prestataireDuServise:
+            type: string
+            length: 255
+            column: PrestataireDuServise
+        
+    lifecycleCallbacks: {  }

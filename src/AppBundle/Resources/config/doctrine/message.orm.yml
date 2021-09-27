@@ -1,0 +1,23 @@
+AppBundle\Entity\message:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\messageRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        username:
+            type: string
+            length: 255
+            unique: true
+        email:
+            type: string
+            length: 255
+            unique: true
+        message:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

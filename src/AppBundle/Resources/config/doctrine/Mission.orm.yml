@@ -1,0 +1,51 @@
+AppBundle\Entity\Mission:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\MissionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        typeDeMission:
+            type: string
+            length: 255
+            column: TypeDeMission
+        objectif:
+            type: string
+            length: 255
+            column: Objectif
+        nombreDeJours:
+            type: string
+            length: '2'
+            column: NombreDeJours
+        dateDepart:
+            type: date
+            column: DateDepart
+        kilometrageDepart:
+            type: string
+            length: 255
+            nullable: true
+            column: KilometrageDepart
+        lieuArrive:
+            type: string
+            length: 255
+            nullable: true
+            column: LieuArrive
+        dateDebut:
+            type: date
+            column: DateDebut
+        dateRetour:
+            type: date
+        kilometrageRetour:
+            type: string
+            length: 255
+            nullable: true
+            column: KilometrageRetour
+        dateFin:
+            type: date
+            column: DateFin
+       
+    lifecycleCallbacks: {  }

@@ -1,0 +1,22 @@
+AppBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        companyName:
+            type: string
+            length: '20'
+            unique: true
+            column: companyName
+        fonction:
+            type: string
+            length: '20'
+            column: fonction
+       
+    lifecycleCallbacks: {  }

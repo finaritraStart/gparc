@@ -1,0 +1,32 @@
+AppBundle\Entity\Assurance:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\AssuranceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        immatricule:
+            type: string
+            length: '20'
+            unique: true
+            column: immatricule
+        typeAssurance:
+            type: string
+            length: '20'
+            unique: true
+            column: TypeAssurance
+        dateAquisition:
+            type: date
+            column: DateAquisition
+        dateExpiration:
+            type: date
+            column: DateExpiration
+        compagnieAssurance:
+            type: string
+            length: '20'
+            column: CompagnieAssurance
+    lifecycleCallbacks: {  }
